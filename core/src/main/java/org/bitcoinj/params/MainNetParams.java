@@ -31,13 +31,13 @@ public class MainNetParams extends AbstractBitcoinNetParams {
        public static final int MAINNET_MAJORITY_WINDOW = 2000;
     public static final int MAINNET_MAJORITY_REJECT_BLOCK_OUTDATED = 1900;
     public static final int MAINNET_MAJORITY_ENFORCE_BLOCK_UPGRADE = 1500;
-    protected static final int DIFFICULTY_CHANGE_TARGET = 100000;
+    protected static final int DIFFICULTY_CHANGE_TARGET = 23500;
 
     public MainNetParams() {
         super();
         interval = INTERVAL;
         targetTimespan = TARGET_TIMESPAN;
-        maxTarget = Utils.decodeCompactBits(0x1e0ffff0L);
+        maxTarget = Utils.decodeCompactBits(0x1d00ffffL);
         
         
         

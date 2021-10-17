@@ -106,8 +106,7 @@ public class VersionMessage extends Message {
     
     public VersionMessage(NetworkParameters params, int newBestHeight) {
         super(params);
-       // clientVersion = params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.CURRENT);
-        clientVersion = 80003;
+       clientVersion = params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.CURRENT);
         localServices = 0;
         time = Utils.currentTimeSeconds();
         // Note that the Bitcoin Core doesn't do anything with these, and finding out your own external IP address

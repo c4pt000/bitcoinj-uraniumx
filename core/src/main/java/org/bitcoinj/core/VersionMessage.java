@@ -291,7 +291,7 @@ public class VersionMessage extends Message {
         if ((localServices & NODE_BLOOM) == NODE_BLOOM)
             return true;
         //return false;
-             //    return true;
+                 return true;
     }
 
     /** Returns true if the protocol version and service bits both indicate support for the getutxos message. */

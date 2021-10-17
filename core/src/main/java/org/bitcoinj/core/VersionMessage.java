@@ -44,7 +44,7 @@ import java.util.Locale;
 public class VersionMessage extends Message {
 
      /** The version of this library release, as a string. */
-    public static final String BITCOINJ_VERSION = "uraniumx-1.0.3";
+    public static final String BITCOINJ_VERSION = "uraniumx-1.0.33";
     /** The value that is prepended to the subVer field of this application. */
     public static final String LIBRARY_SUBVER = "/Radioactive-UraniumX:" + BITCOINJ_VERSION + "/";
 
@@ -145,8 +145,7 @@ public class VersionMessage extends Message {
             // int bestHeight (size of known block chain).
             bestHeight = readUint32();
             if (clientVersion >= params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER)) {
-              //  relayTxesBeforeFilter = readBytes(1)[0] != 0;
-                                 relayTxesBeforeFilter = true;
+                relayTxesBeforeFilter = readBytes(1)[0] != 0;
 
             } else {
                 relayTxesBeforeFilter = true;
@@ -286,13 +285,13 @@ public class VersionMessage extends Message {
      * Returns true if the peer supports bloom filtering according to BIP37 and BIP111.
      */
     public boolean isBloomFilteringSupported() {
-        if (clientVersion >= params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER)
-                && clientVersion < params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER_BIP111))
+        if (clientVersion <= params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER)
+                && clientVersion > params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER_BIP111))
             return true;
         if ((localServices & NODE_BLOOM) == NODE_BLOOM)
             return true;
         //return false;
-                 return true;
+             //    return true;
     }
 
     /** Returns true if the protocol version and service bits both indicate support for the getutxos message. */

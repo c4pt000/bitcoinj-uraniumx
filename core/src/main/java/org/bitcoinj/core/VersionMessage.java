@@ -106,7 +106,8 @@ public class VersionMessage extends Message {
     
     public VersionMessage(NetworkParameters params, int newBestHeight) {
         super(params);
-        clientVersion = params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.CURRENT);
+       // clientVersion = params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.CURRENT);
+        clientVersion = 80003;
         localServices = 0;
         time = Utils.currentTimeSeconds();
         // Note that the Bitcoin Core doesn't do anything with these, and finding out your own external IP address
@@ -144,7 +145,9 @@ public class VersionMessage extends Message {
             // int bestHeight (size of known block chain).
             bestHeight = readUint32();
             if (clientVersion >= params.getProtocolVersionNum(NetworkParameters.ProtocolVersion.BLOOM_FILTER)) {
-                relayTxesBeforeFilter = readBytes(1)[0] != 0;
+              //  relayTxesBeforeFilter = readBytes(1)[0] != 0;
+                                 relayTxesBeforeFilter = true;
+
             } else {
                 relayTxesBeforeFilter = true;
             }
@@ -288,7 +291,8 @@ public class VersionMessage extends Message {
             return true;
         if ((localServices & NODE_BLOOM) == NODE_BLOOM)
             return true;
-        return false;
+        //return false;
+                 return true;
     }
 
     /** Returns true if the protocol version and service bits both indicate support for the getutxos message. */
